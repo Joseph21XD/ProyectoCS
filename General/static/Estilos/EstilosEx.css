@@ -1,0 +1,88 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 28, 2017, 1:42:44 PM
+    Author     : Raul
+*/
+
+.titulos
+{
+	font-family: Open Sans;
+	font-size: 28px;
+	color: #13A8B1;
+	text-align:center;
+}
+
+
+.textoderecha
+{
+	font-family:Times New Roman;
+	font-size:16px;
+	color:teal;
+	text-align:right
+}
+
+.textoizquierda
+{
+	font-family: Open Sans;
+	font-size: 14px;
+	color: #13A8B1;
+    text-align: left;
+}
+
+.textocentrado
+{
+	font-family: Open Sans;
+	font-size: 14px;
+	color: #13A8B1;
+	text-align: center;
+}
+
+.textoref
+{
+	font-family: Open Sans;
+	font-size: 16px;
+	color: white;
+	font-style: normal;
+    text-decoration: none;
+}
+
+.button 
+{ 
+        font-size: 18px; 
+        color: white; 
+        width: 200px;
+        height: 40px;
+        border: 0px;
+        background-color:  #13A8B1;
+        border-radius: 5px; 
+        font-family: "Open Sans";
+} 
+
+.button:disabled
+{ 
+        font-size: 18px; 
+        color: white; 
+        width: 200px;
+        height: 40px;
+        border: 0px;
+        background-color: lightgray;
+        border-radius: 5px; 
+        opacity: 0.5;
+        font-family: "Open Sans" 
+}
+
+.button:hover
+{ 
+        font-size: 18px; 
+        color: white; 
+        width: 200px;
+        height: 40px;
+        border: 0px;
+        background-color: #187E89;
+        border-radius: 5px; 
+        font-family: "Open Sans" 
+} 

@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>  
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel=Stylesheet href="{% static 'Estilos/EstilosEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Estilos/FondoEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Estilos/MenuEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Fonts/Font.css' %}" type="text/css">
+    
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+
+    
+<title>Inicio de Sesión</title>
+
+</head>
+
+
+<body bgcolor="#D9D9D9" class="divFondo">
+    <form method="POST" name="inicio" id="inicio">
+    {% csrf_token %}
+    <div class="divFondo">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="divPrincipal">
+        <content class="bodyContent">
+        <p>
+        <p align="center" class="titulos">Inicio de Sesión</p>
+        <table BORDER="0" WIDTH=300  align="center" cellpadding="10" cellspacing="0">
+            <tr>
+                <td><img src="{% static 'images/user.png' %}" align="right" height="30px" width="30px" /></td>
+                    <td>
+                        <div align="left">
+                            {{ form.usr }}
+                        </div>
+                    </td>
+            </tr>
+            <tr>
+                <td><img src="{% static 'images/pass.png' %}" align="right" height="30px" width="30px" /></td>
+                    <td>
+                        <div align="left">
+                            {{ form.pwd }}
+                        </div>
+                    </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div align="center" style="margin: 15px 15px 15px 15px">
+                        <input class="button" type="submit" value="Ingresar" name="btn">
+                        <p class="textoref" style="color: #f00;">{{error}}</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        </content>
+    </div>
+    <p>            
+    <p>
+    
+    </div>
+</form>
+<footer class="bodyFooter">
+    <table BORDER="0" WIDTH=300  align="right" cellpadding="30" cellspacing="0" style="position: absolute; bottom: 0; right: 0;">
+        <tr>
+            <td><a href="/acercade" class="textoref" style="color: white" />Acerca de</td>
+            <td><a href="/ayuda" class="textoref" style="color: white"/>Ayuda</td>
+        </tr>
+    </table>
+</footer>
+</body>
+</link></link></link></link>
+</html>

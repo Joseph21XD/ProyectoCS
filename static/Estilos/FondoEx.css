@@ -1,0 +1,126 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 28, 2017, 1:43:25 PM
+    Author     : Raul
+*/
+
+.divPrincipal{
+    
+    width: 350px;
+    height: auto;
+    min-height: 500px;
+    left: 0;
+    right: 0;
+    margin: auto; 
+    border-radius: 20px; 
+    background-color: snow;
+    z-index: 1;
+    position: absolute;
+}
+
+.divPrincipal .bodyHeader
+{
+    height: 80px;
+    background-color: steelblue;
+}
+
+.divPrincipal .bodyContent
+{
+    height: auto;
+    padding: 50px;
+    min-height: 500px;
+
+}
+
+.bodyCursos
+{
+    height: auto;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    padding: 5px;
+    min-height: 50%;
+    min-width: 50%;
+    background-color: snow;
+
+}
+
+.bodyEvaluaciones
+{
+    height: auto;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    padding: 5px;
+    min-height: 20%;
+    min-width: 50%;
+    background-color: snow;
+
+}
+
+.divPrincipal .bodyFooter
+{
+    height: 30px;
+    background-color: #187E89;
+}
+
+
+.divFondo{
+    
+    width: auto;
+    height: auto;
+    border: 0px solid black;
+    margin-left: 0px;
+    margin-right: 0px;    
+    background-color: #D9D9D9;
+}
+
+.divFondo .bodyHeader
+{
+    height: 50px;
+    background-color: #187E89;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.divFondo .bodyContentNoticias
+{
+
+    padding: 50px;
+    position: absolute;
+    right: 0%;
+    top: 50px;
+    bottom: 20%;
+    max-width: 20%;
+    background-color: #222D32;
+}
+
+.divFondo .bodyFooter
+{
+    position: absolute;
+    height: 25%;
+    background-color: #187E89;
+    bottom: 0%;
+    left: 0;
+    right: 0;
+    z-index: 0;
+}
+
+.bodyLogro
+{
+    height: auto;
+    position: absolute;
+    top: 20%;
+    padding: 5px;
+    min-height: 10%;
+    min-width: 20%;
+    background-color: #222D32;
+    border-radius: 7%;
+
+}

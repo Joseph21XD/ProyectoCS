@@ -1,0 +1,81 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>  
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel=Stylesheet href="{% static 'Estilos/EstilosEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Estilos/FondoEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Estilos/MenuEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Estilos/VerticalMenuEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Fonts/Font.css' %}" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    
+    
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="{% static 'javascripts/script.js' %}" type="text/javascript"></script>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="{% static 'javascripts/scriptV.js' %}" type="text/javascript"></script>
+
+    
+<title>Main</title>
+
+</head>
+
+
+<body bgcolor="#D9D9D9" class="divFondo">
+    <form action="MainProfesor.html" method="POST" name="inicio" id="inicio">
+    <div class="divFondo">
+    <header class="bodyHeader">
+        <div id="cssmenu">
+            <ul>
+              <li class="active"><a href="/profesor/main"><i class="fas fa-home" style="margin-right: 5px"></i>Inicio</a></li>
+              <li><a href="/profesor/perfil"><i class="far fa-user" style="margin-right: 5px"></i>Perfil</a></li>
+              <li style="float:right; right: 5px;"><a class="active" href="/profesor/logout"><i class="fas fa-power-off" style="margin-right: 5px"></i>Cerrar Sesión</a></li>
+            </ul>      
+        </div>      
+    </header>
+    <p class="titulos" style="position: absolute; top: 8%; left: 10%;">Cursos</p>
+    <content class="bodyEvaluaciones">
+        <div id="cssmenuV" style="width: 100%;">
+            <ul>
+                {% for grado in grados %}
+               <li class='has-sub'><a href='#'><span>{{grado}}</span></a>
+                   <ul>
+                    {% for materia in materias %}
+                    {%if materia.grado == forloop.parentloop.counter %}
+                    <li><a href="/profesor/curso/{{materia.id}}">
+                        {{ materia.grado }}-{{ materia.seccion }}
+                    </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul> 
+        </div> 
+    </content>
+        <content class="bodyContentNoticias" style=" bottom: 0">
+        <p align="center" class="titulos" style="margin-top: 0px">Noticias</p>
+        <table border="0" width=300  align="center" cellpadding="10" cellspacing="0">
+            {% for asignacion in asignaciones %}
+            {% if forloop.counter < 7 %}
+            <tr>
+                <hr style="margin-left: auto; margin-right: auto;">
+                <p align="center" class="textoizquierda" style="margin-top: 0px;">{{ asignacion.evaluacion.grupo.curso.nombre }} {{ asignacion.evaluacion.grupo.grado }}-{{ asignacion.evaluacion.grupo.seccion }}:<br> Se creó la asignación {{ asignacion.nombre }}</p>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+        </content>
+    </div>
+    </div>
+</form>
+</body>
+</link></link></link></link>
+</html>

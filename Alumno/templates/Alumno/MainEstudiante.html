@@ -1,0 +1,70 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>  
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel=Stylesheet href="{% static 'Estilos/EstilosEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Estilos/FondoEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Estilos/MenuEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Estilos/TablaEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Fonts/Font.css' %}" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="{% static 'javascripts/script.js' %}" type="text/javascript"></script>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="{% static 'javascripts/scriptV.js' %}" type="text/javascript"></script>
+
+    
+<title>Menú Principal</title>
+
+</head>
+
+
+<body bgcolor="#D9D9D9" class="divFondo">
+    <div class="divFondo">
+    <header class="bodyHeader">
+        <div id="cssmenu">
+            <ul>
+              <li class="active"><a href="/alumno/main"><i class="fas fa-home" style="margin-right: 5px"></i>Inicio</a></li>
+              <li><a href="/alumno/main"><i class="fas fa-book" style="margin-right: 5px"></i>Materias</a></li>
+              <li><a href="/alumno/perfil"><i class="far fa-user" style="margin-right: 5px"></i>Perfil</a></li>
+              <li style="float:right; right: 5px;"><a class="active" href="/alumno/logout"><i class="fas fa-power-off" style="margin-right: 5px"></i>Cerrar Sesión</a></li>
+            </ul>    
+        </div>      
+    </header>
+    <content class="bodyCursos">
+        <table border="0" width=100% align="center" cellpadding="10" cellspacing="0">
+            {% for materia in materias %}
+            {% if forloop.counter|divisibleby:2 %}
+            <tr bgcolor="#CCCCCC">
+                <td width="30px"><img src="{% static 'images/check-circle.png' %}" align="left" height="30px" width="30px" /></td>
+                <td><a href="/alumno/curso/{{materia.id}}" class="textoref" style="color: #13A8B1" />{{ materia.curso.nombre }}</td>
+            </tr>
+            {%else%}
+            <tr>
+                <td width="30px"><img src="{% static 'images/check-circle.png' %}" align="left" height="30px" width="30px" /></td>
+                <td><a href="/alumno/curso/{{materia.id}}" class="textoref" style="color: #13A8B1" />{{ materia.curso.nombre }}</td>
+            </tr>
+            {% endif%}
+            {% endfor %}
+        </table>
+    </content>
+    <content class="bodyContentNoticias" style="bottom: 0%;">
+        <p align="center" class="titulos" style="margin-top: 0px">Notificaciones</p>
+        <table border="0" width=300  align="center" cellpadding="10" cellspacing="0">
+            {% for asignacion in asignaciones %}
+            {% if forloop.counter < 6 %}
+            <tr>
+                <hr>
+                <p align="center" class="textoizquierda" style="margin-top: 0px;">{{ asignacion.evaluacion.grupo.curso.nombre }}:<br> Se creó la asignación {{ asignacion.nombre }}</p>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+    </content>
+    </div>
+</body>
+</html>

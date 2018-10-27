@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<form method="POST">
+{% csrf_token %}
+{{form1}}
+<br>
+{{form2}}
+<input type="submit" name="btn" value="Guardar">
+</form>
+</body>
+</html>

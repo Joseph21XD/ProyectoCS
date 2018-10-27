@@ -1,0 +1,185 @@
+﻿{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<script>
+	function addColumn(tblId){
+		//Sustituyo el boton del ultimo titulo por un input tipo date
+		//Creo un objeto que almacene el nuevo boton
+		var tblHeadObj = document.getElementById(tblId).tHead;
+		var columnsHead = tblHeadObj.rows[0].cells.length-2;
+
+		$('#alumnos > thead > tr').each(function(i, val){
+			$('th:last', this).html('<input type="date" onblur="toggleDate(this.id)" id="fc' + columnsHead + '" value="" style="background-color: #187E89; color: #FFFFFF; border-style: hidden; width:100%; height:100%"><input type="hidden" id="fc' + columnsHead + '1" name="fc'+ columnsHead + '1" value="">') 
+		});
+
+		//Se indica que es de tipo titulo
+		var newTH = document.createElement('th');
+		//Lo anado a la tabla
+		tblHeadObj.rows[0].appendChild(newTH);
+		//Le doy las caracteristicas del boton
+		newTH.innerHTML = '<input type="button" id="btnAddCol" value="Nueva fecha" style="background-color: #187E89; color: #FFFFFF; border-style: hidden; width:100%; height:100%" onclick="addColumn(\'alumnos\');">';
+
+
+		/*
+									<td><input type="checkbox" onclick="toggleCheckbox(this.id)" id="ck{{forloop.parentloop.counter}}{{forloop.counter}}" checked>
+							<input type="hidden" id="ck'+ (i+1) + columns +'1" name="ck'+ (i+1) + columns +'1" value="Si">
+							</td>
+	
+		*/
+
+		//Ahora inserto los nuevo checkbox
+		var tblBodyObj = document.getElementById(tblId).tBodies[0];
+		var columns = tblBodyObj.rows[0].cells.length-1;
+		//Para la nueva columna necesito uno por cada estudiante
+		for (var i=0; i<tblBodyObj.rows.length; i++) {
+			//Inserto la nueva celda en la tabla
+			var newCell = tblBodyObj.rows[i].insertCell(-1);
+			//Le doy las caracteristicas de un input de tipo checkbox
+			newCell.innerHTML = '<input type="checkbox" onclick="toggleCheckbox(this.id)" id="ck'+ (i+1) + columns +'"><input type="hidden" id="ck'+ (i+1) + columns +'1" name="ck'+ (i+1) + columns +'1" value="No">';
+		}
+	}
+
+	function toggleCheckbox(id) {
+	var texto = document.getElementById(id+"1").value;
+		if (texto == "Si"){
+			document.getElementById(id+"1").value = "No";
+		}
+		else{
+			document.getElementById(id+"1").value = "Si";
+		}
+	}
+
+	function toggleDate(id){
+		document.getElementById(id+"1").value = document.getElementById(id).value;
+	}
+
+</script>
+
+<style>
+#alumnos {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#alumnos td, #alumnos th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#alumnos th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #187E89;
+    color: white;
+}
+</style>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel=Stylesheet href="{% static 'Estilos/EstilosEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Estilos/FondoEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Estilos/MenuEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Estilos/VerticalMenuEx.css' %}" type="text/css">
+<link rel=Stylesheet href="{% static 'Fonts/Font.css' %}" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    
+    
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="{% static 'javascripts/script.js' %}" type="text/javascript"></script>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="{% static 'javascripts/scriptV.js' %}" type="text/javascript"></script>
+
+
+    <title>Asignaciones</title>
+</head>
+<body bgcolor="#D9D9D9" class="divFondo">
+    <!--<form action="index.html" method="POST" name="inicio" id="inicio">-->
+    <div class="divFondo">
+    <header class="bodyHeader">
+        <div id="cssmenu">
+            <ul>
+              <li class="active"><a href="/profesor/main"><i class="fas fa-home" style="margin-right: 5px"></i>Inicio</a></li>
+              <li><a href="/profesor/perfil"><i class="far fa-user" style="margin-right: 5px"></i>Perfil</a></li>
+              <li style="float:right; right: 5px;"><a class="active" href="/profesor/logout"><i class="fas fa-power-off" style="margin-right: 5px"></i>Cerrar Sesión</a></li>
+            </ul>   
+        </div> 
+        <div id="cssmenu" style="">
+            <ul>
+              <li class="active"><a href="/profesor/asistencia/add"><i class="fas fa-list-ul" style="margin-right: 5px"></i>Revisar Asistencia</a></li>
+              <li><a href="/profesor/evaluacion/add"><i class="fas fa-book" style="margin-right: 5px"></i>Agregar Evaluación</a></li>
+              <li><a href="/profesor/logro/add"><i class="far fa-star" style="margin-right: 5px"></i>Agregar Logro</a></li>
+            </ul>    
+        </div>      
+    </header>
+    <br>
+    <br>
+    <br>
+<form method="POST">
+	{% csrf_token %}
+    <div class="asignacionesAlumnos">
+		<br>
+		<br>
+		<table BORDER="0" WIDTH=300  align="center" cellpadding="10" cellspacing="0">
+            <tr>
+				<p align="left" class="titulos"><h2>Asignaciones</h2></p>
+				<br>
+            </tr>
+            <tr>
+				<table id = "alumnos" style= "background-color: white">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nombre</th>
+							{% for fecha in fechas %}
+							<th><input type="date" id="dia1" value="{{fecha|date:'Y-m-d'}}" style="background-color: #187E89; color: #FFFFFF; border-style: hidden; width:100%; height:100%" readonly>
+								<input type="hidden" id="fc{{forloop.counter}}1" name="fc{{forloop.counter}}1" value="{{fecha|date:'Y-m-d'}}">
+							</th>
+							{% endfor %}
+							<th><input type="button" id="btnAddCol" value="Nueva fecha" style="background-color: #187E89; color: #FFFFFF; border-style: hidden; width:100%; height:100%" onclick="addColumn('alumnos');">
+								<input type="hidden" id="fc{{forloop.counter}}1" name="fc{{forloop.counter}}1" value="{{fecha|date:'Y-m-d'}}">
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						 <!--No se si el espacio que guarda la asistencia es un booleano pero en ese caso me parece mejor este, asi se podria justicar una ausencia o algo asi-->
+						{% for alumno, asistio in alumnos %}
+						<tr>
+							<td>{{alumno.alumno.id}}</td>
+							<td>{{alumno.alumno.nombre}} {{alumno.alumno.apellido1}}</td>
+							{% for i in asistio%}
+							{% if i == 1 %}
+							<td><input type="checkbox" onclick="toggleCheckbox(this.id)" id="ck{{forloop.parentloop.counter}}{{forloop.counter}}" checked>
+							<input type="hidden" id="ck{{forloop.parentloop.counter}}{{forloop.counter}}1" name="ck{{forloop.parentloop.counter}}{{forloop.counter}}1" value="Si">
+							</td>
+
+							{% else %}
+							<td><input type="checkbox" onclick="toggleCheckbox(this.id)" id="ck{{forloop.parentloop.counter}}{{forloop.counter}}">
+							<input type="hidden" id="ck{{forloop.parentloop.counter}}{{forloop.counter}}1" name="ck{{forloop.parentloop.counter}}{{forloop.counter}}1" value="No">
+							</td>
+							{% endif %}
+							{% endfor %}
+						</tr>
+						<!--Si prefiere que quede fiel al prototipo usa este, con + y -, pero no editables-->
+						{% endfor %}
+					</tbody>
+				</table>
+            </tr>
+            <tr>
+                <td colspan="5">
+				<br>
+				<br>
+				<br>
+                    <div align="Right" style="margin: 15px 15px 15px 15px">
+                        <input class="button" type="submit" value="Guardar" name="btn">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+</body>
+</html>
